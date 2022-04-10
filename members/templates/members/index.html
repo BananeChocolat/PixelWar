@@ -1,0 +1,20 @@
+
+{% extends 'layout.html' %} <!-- 'layout.html' template file -->
+
+
+
+{% block title %}Accueil{% endblock title %} <!-- titre -->
+
+
+{% block content %} <!-- contenu modifie -->
+
+<p>Bienvenue sur mon projet Django!</p>
+
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+{% endblock content %}
+
