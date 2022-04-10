@@ -20,7 +20,7 @@ LOGIN_REDIRECT_URL = "/"
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-vd544v5=rfxymjpk5*h(27tqmunt1r@5miyfd64*gj&!0zoo7%'
+SECRET_KEY = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True #bien changer quand fini
