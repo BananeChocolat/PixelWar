@@ -2,7 +2,7 @@ import socket
 import time
 
 ClientMultiSocket = socket.socket()
-host = '192.168.246.226' #ip à connecter
+host = '192.168.0.54' #ip à connecter
 port = 12345
 print('Waiting for initiate connection')
 

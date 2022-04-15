@@ -1,10 +1,14 @@
 import socket
 import threading
+import hashlib
+import time
+
+
 
 
 clients = set()
 clients_lock = threading.Lock()
-host = '192.168.246.226'
+host = '192.168.0.54'
 port = 12345
 
 s = socket.socket()
@@ -14,25 +18,53 @@ s.listen(3)
 th = []
 
 
+def get_hash():
+    # BUF_SIZE is totally arbitrary, change for your app!
+    BUF_SIZE = 1024 # lets read stuff in 64kb chunks!
+    md5 = hashlib.md5()
+    
+    with open('canvas.txt', 'rb') as f:
+        while True:
+            data = f.read(BUF_SIZE)
+            if not data:
+                break
+            md5.update(data)
+            
+    return md5.hexdigest()
+
+
+
+
+
 def listener(client, address):
     print("Accepted connection from: ", address)
-    with clients_lock:
-        clients.add(client)
-    client.sendall('Grille initiale'.encode())
+    
     file=open('canvas.txt','r')
     read_file=file.read() 
-    compteur=0
-    try:    
+    
+    with clients_lock:
+        clients.add(client)
+    
+    client.sendall(f'Grille initiale : {read_file.encode()}'.encode())
+    file.close()
+      
+    
+    try:
+        
         while True:
-            file2=open('canvas.txt','r')
-            if file2.read()!=read_file:
-                compteur+=1
-                print(f'Changement [{compteur}] détecté : sending to client ...')
+            hash_initial=get_hash()
+            while hash_initial != get_hash():
+                time.sleep(0.1)
+                print('DEBUG : Grille modifiée')
+                file=open('canvas.txt','r')
+                read_file=file.read() 
                 with clients_lock:
                     for c in clients:
-                        c.sendall('List updated'.encode())
-            file=open('canvas.txt','r')
-            read_file=file.read()
+                        c.sendall(f'Grille modifiée : {read_file}'.encode())
+                
+                file.close()
+                hash_initial=get_hash()
+            
     finally:
         with clients_lock:
             clients.remove(client)
