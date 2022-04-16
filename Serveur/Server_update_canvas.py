@@ -6,7 +6,8 @@ import time
 
 
 
-clients = set()
+clients = []
+
 clients_lock = threading.Lock()
 host = '192.168.0.54'
 port = 12345
@@ -32,43 +33,52 @@ def get_hash():
             
     return md5.hexdigest()
 
-
-
-
+client_count=0
 
 def listener(client, address):
+    
+    global client_count
+    
     print("Accepted connection from: ", address)
     
     file=open('canvas.txt','r')
     read_file=file.read() 
     
     with clients_lock:
-        clients.add(client)
+        clients.append(client)
+        client_count+=1
     
-    client.sendall(f'Grille initiale : {read_file.encode()}'.encode())
+    client.sendall(f'Grille initiale : {read_file}'.encode())
     file.close()
       
     
     try:
-        
         while True:
+            
+            
             hash_initial=get_hash()
+            time.sleep(0.1)
+            #print(f'[DEBUG] : [hash_initial] : {hash_initial} | [hash_actuel] : {get_hash()}')
             while hash_initial != get_hash():
-                time.sleep(0.1)
-                print('DEBUG : Grille modifiée')
+                
+                
                 file=open('canvas.txt','r')
                 read_file=file.read() 
                 with clients_lock:
-                    for c in clients:
-                        c.sendall(f'Grille modifiée : {read_file}'.encode())
-                
+                    for i in range(client_count):
+            
+                        # print(f'[DEBUG] : sending to {c}')
+                        clients[i].sendall(f'Grille modifiée : {read_file} | Clients : {client_count}'.encode())
+                        
                 file.close()
                 hash_initial=get_hash()
             
     finally:
         with clients_lock:
-            clients.remove(client)
+            clients.pop(client)
             client.close()
+            client_count-=1
+            
 
 
 

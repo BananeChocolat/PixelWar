@@ -1,5 +1,5 @@
 import socket
-import time
+
 
 ClientMultiSocket = socket.socket()
 host = '192.168.0.54' #ip à connecter
@@ -16,7 +16,7 @@ except socket.error as e:
 
 while True:
 
-    res = ClientMultiSocket.recv(1024)
+    res = ClientMultiSocket.recv(1024)      
     print(res.decode('utf-8'))
     
 
