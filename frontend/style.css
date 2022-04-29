@@ -2,6 +2,8 @@
     --CANVAS-WIDTH: 800px;
     --CANVAS-HEIGHT: 800px;
     margin: 0;
+    padding: 0;
+    border: 0;
 }
 
 html {
@@ -17,17 +19,12 @@ html::-webkit-scrollbar {
     height: var(--CANVAS-HEIGHT);
 
     image-rendering: pixelated;
-
-    border-color: rgb(255, 255, 255);
-    border-width: 3px;
-    border-style: solid;
-    border-radius: 5px;
 }
 
 #scale {
     transform: scale(1);
-    transform-origin: center;
-    
+    transform-origin: center; 
+    font-size: 0;  
 }
 
 #position {

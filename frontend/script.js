@@ -40,11 +40,12 @@ const pixels = Uint8ClampedArray.from(pixelslist);
 const imageData = new ImageData(pixels, WIDTH, HEIGHT);
 
 ctx.putImageData(imageData, 0, 0);
-
+var scaleNum = 1
 // zoomer
 const scale = document.getElementById('scale');
 window.addEventListener('scroll', function(){
-  scale.style.transform = `scale(${scrollY/100 + 1})`;
+  scaleNum = scrollY/100 + 1
+  scale.style.transform = `scale(${scaleNum})`;
 });
 
 // bouger
@@ -78,7 +79,9 @@ document.addEventListener('mouseup', function(event) {
       y : event.clientY
 
     };
-    console.log(`click ${mousePosition.x + offset[0]} ${mousePosition.y + offset[1]}`);
+    console.log(`click scale ${offset[0]/scaleNum} ${offset[1]/scaleNum}`);
+    console.log(`click ${offset[0]} ${offset[1]}`);
+    console.log(scaleNum);
   };
 
   console.log('mouseup');
