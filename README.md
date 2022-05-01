@@ -11,4 +11,4 @@ To do :
 - [ ] Patch tous les bugs mineurs
 - [ ] Setup les serveurs et heberger une version bêta du site online
 - [ ] Ajouter des sécurités pour éviter bots  
-
+- [ ] Recupérer la grille non pas grace aux requêtes python mais grâce à une api   
