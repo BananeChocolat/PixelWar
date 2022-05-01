@@ -1,5 +1,6 @@
 # PixelWar
 
+<<<<<<< HEAD
 "Apprenez à dompter la machine"
 
 To do :
@@ -10,3 +11,6 @@ To do :
 - [ ] Patch tous les bugs mineurs
 - [ ] Setup les serveurs et heberger une version bêta du site online
 - [ ] Ajouter des sécurités pour éviter bots  
+=======
+"Apprenez à dompter la machine"
+>>>>>>> f8babac4f360ec31f5df1fa42da918cc2a79501a

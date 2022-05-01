@@ -1,0 +1,45 @@
+*{
+    --CANVAS-WIDTH: 800px;
+    --CANVAS-HEIGHT: 800px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html {
+    background-color: rgb(36, 36, 36);
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+#canvas {
+    width: var(--CANVAS-WIDTH);
+    height: var(--CANVAS-HEIGHT);
+
+    image-rendering: pixelated;
+}
+
+#scale {
+    transform: scale(1);
+    transform-origin: center; 
+    font-size: 0;  
+}
+
+#position {
+    position: absolute;
+    
+    left: 50vw;
+    top: 50vh;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+#camera {
+    display: block;
+    height: 200vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    user-select: none !important;
+}
