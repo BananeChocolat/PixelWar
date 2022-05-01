@@ -20,8 +20,8 @@ th = []
 
 
 def get_hash():
-    # BUF_SIZE is totally arbitrary, change for your app!
-    BUF_SIZE = 1024 # lets read stuff in 64kb chunks!
+    
+    BUF_SIZE = 1024 #taille du buffer -> arbitraire
     md5 = hashlib.md5()
     
     with open('canvas.txt', 'rb') as f:
@@ -48,7 +48,8 @@ def listener(client, address):
         clients.append(client)
         client_count+=1
     
-    client.sendall(f'Grille initiale : {read_file}'.encode())
+    # client.sendall(f'Grille initiale : {read_file}'.encode())
+    client.sendall(f'{read_file}'.encode())
     file.close()
       
     
@@ -68,7 +69,8 @@ def listener(client, address):
                     for i in range(client_count):
             
                         # print(f'[DEBUG] : sending to {c}')
-                        clients[i].sendall(f'Grille modifiée : {read_file} | Clients : {client_count}'.encode())
+                        # clients[i].sendall(f'Grille modifiée : {read_file} | Clients : {client_count}'.encode())
+                        clients[i].sendall(f'{read_file}'.encode())
                         
                 file.close()
                 hash_initial=get_hash()
