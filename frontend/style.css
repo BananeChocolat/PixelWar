@@ -6,11 +6,6 @@ body{
     border: 0;
 }
 
-a {
-  text-decoration: none;
-  color:#000000
-}
-
 html {
     background-color: rgb(50, 50, 50);
 }
@@ -62,8 +57,12 @@ html::-webkit-scrollbar {
 header{
 	margin: 0;
 	background: #222;
-	font-family: 'Work Sans', sans-serif;
-	font-weight: 400;
+	position: fixed;
+  font-family: 'Work Sans', sans-serif;
+	z-index: 999;
+  font-weight: 400;
+  width: 100%;
+  height: 50px;
 }
 
 
@@ -79,23 +78,24 @@ header{
 
 /* navigation styles start here */
 
-header {
-  background: var(--background);
-  text-align: center;
-  position: fixed;
+tartine {
+  font-family: 'VT323', monospace;
+  color: aliceblue;
+  font-size: 2em;
+  letter-spacing: 0.2em;
   z-index: 999;
-  width: 100%;
-}
-h2{
-    position: fixed;
-    z-index: 9;
-    width: 150%;
-    height : 100px;
-    margin-left: -50px;
-    background : rgba(36, 36, 36, 0.59);
-    filter: blur(0.7em);
 }
 
+
+xxx{
+    position: fixed;
+    z-index: 9;
+    width: 100%;
+    height : 1px;
+    margin-top: 50px;
+    background : rgba(223, 217, 217, 0.425);
+    
+}
     
 /* changed this from the tutorial video to
    allow it to gain focus, making it tabbable */
@@ -179,7 +179,22 @@ nav a {
   border-radius: 0.25em;
 }
 
+nav b {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  transition: opacity 150ms ease-in-out;
+  padding: 0.18em;
+  border-radius: 0.25em;
+  font-weight: 100;
+}
+
 nav a:hover {
+  color: #000;
+}
+
+nav b:hover {
   color: #000;
 }
 
@@ -238,6 +253,11 @@ nav a:hover {
     opacity: 1;
     position: relative;
   }
+
+  nav b {
+    opacity: 1;
+    position: relative;
+  }
   
   nav a::before {
     content: '';
@@ -256,6 +276,141 @@ nav a:hover {
   nav a:hover::before {
     transform: scale(1,1);
   }
+
+  nav b::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background: black;
+    position: absolute;
+    top: 1.25em;
+    left: -1px;
+    right: -1px;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
+  }
+  
+  
+  nav b:hover::before {
+    transform: scale(1,1);
+
+
+
+
+
+
 }  
 
 
+
+
+
+ul{
+  padding: 0px;
+}
+
+:root {
+    --clr-neon: hsl(317 100% 54%);
+    --clr-bg: hsl(323 21% 16%);
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  carpe{
+    background: rgb(25, 19 , 26 );
+    font-family: 'VT323', monospace;
+    color: var(--clr-neon);
+    text-align: center;
+    margin-top: 12vh;
+    padding: 0px;
+    text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.192), 0 0 0.2em currentColor;
+  }
+  .neon:hover{
+    text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.192), 0 0 0.45em currentColor;
+    transition: text-shadow 100ms linear;
+  }
+  .neon::before{
+    text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.192), 0 0 0.45em currentColor;
+    transition: text-shadow 100ms linear;
+  }
+  .neon::after{
+    text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.192), 0 0 0.45em currentColor;
+    transition: text-shadow 100ms linear;
+  }
+  .neon:hover::after{
+    text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.192), 0 0 0.45em currentColor;
+    transition: text-shadow 100ms linear;
+  }
+  .neon-button {
+    font-size: 4rem;
+  
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--clr-neon);
+    border: var(--clr-neon) 0.125em solid;
+    padding: 0.15em 0.50em;
+    border-radius: 0.25em;
+  
+    text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.192), 0 0 0.45em currentColor;
+  
+    box-shadow: inset 0 0 0.5em 0 var(--clr-neon), 0 0 0.5em 0 var(--clr-neon);
+  
+    position: relative;
+  }
+  
+  .neon-button::before {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    background: var(--clr-neon);
+    top: 120%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  
+    transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+    filter: blur(1em);
+    opacity: 0.7;
+  }
+  
+  .neon-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 0 0 2em 0.5em var(--clr-neon);
+    opacity: 0;
+    background-color: var(--clr-neon);
+    z-index: -1;
+    transition: opacity 100ms linear;
+  }
+  
+  .neon-button:hover,
+  .neon-button:focus {
+    color: var(--clr-bg);
+    text-shadow: none;
+  }
+  
+  .neon-button:hover::before,
+  .neon-button:focus::before {
+    opacity: 1;
+  }
+  .neon-button:hover::after,
+  .neon-button:focus::after {
+    opacity: 1;
+  }
+  h1{
+    font-family: '', monospace;
+    color: var(--clr-neon);
+    text-align: center;
+    font-size: 8rem;
+    margin-top: 20vh;
+ }
+}
