@@ -12,12 +12,15 @@
 <header>
     <h1 class="logo" style="margin-top: 12px;margin-bottom: 12px;">PIXELWAR</h1>
 <input type="checkbox" id="nav-toggle" class="nav-toggle">
+{% if not current_user.is_authenticated %}
 <nav>
+  
   <ul>
-    <li><a href="#">register</a></li>
-    <li><a href="#">login</a></li>
+    <li><a href="signup">register</a></li>
+    <li><a href="login">login</a></li>
   </ul>
 </nav>
+{% endif %}
 <label for="nav-toggle" class="nav-toggle-label">
   <span></span>
 </label>

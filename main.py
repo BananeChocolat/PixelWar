@@ -11,7 +11,7 @@ def index():
     return render_template('index.html') # renvoie la page index.html dans le dossier templates
 
 @main.route('/canvas') # retourne la page profile
-@login_required # permet de verifier si l'utilisateur est connecté
+# @login_required # permet de verifier si l'utilisateur est connecté -> pas utile ici
 def canvas():
     return render_template('canvas.html') # renvoie la page profile.html et set name = nom_du_compte
 
