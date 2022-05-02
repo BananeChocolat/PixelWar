@@ -33,7 +33,7 @@ function shader(pixels){
 
 
 
-const pixelslist = loadFile('canvas.csv').split(',').map(Number);
+const pixelslist = loadFile('./frontend/canvas.csv').split(',').map(Number);
 
 const pixels = Uint8ClampedArray.from(pixelslist);
 

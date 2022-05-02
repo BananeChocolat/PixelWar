@@ -12,7 +12,7 @@ db = SQLAlchemy()# sqlalchemy permet de creer / manipuler des db avec flask
 def create_app():
     """ Fonction qui cree l'application utilisée dans Flask et qui va gerer les authentifications """
     
-    app = Flask(__name__) # on cree l'app flask ,
+    app = Flask(__name__,static_folder='./frontend') # on cree l'app flask ,
     app.config['SECRET_KEY'] = 'b0nj0ur-m0nsieur-si-v0us-lisez-le-c0de' # clee utilisée pour encrypter donnes de la base de maniere sécurisée
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite' # chemin vers la db (creations + modifications)
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # permet de ne pas afficher les messages de debug de modification (recommendée d'être désactivée car consomme)

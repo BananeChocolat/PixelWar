@@ -27,7 +27,7 @@ def login():
             return redirect(url_for('auth.login')) # reload la page si le pass est mauvais
         # si tout  est vérifié on connecte l'utilisateur
         login_user(user, remember=remember)
-        return redirect(url_for('main.profile')) # renvoie a la page profile
+        return redirect(url_for('main.canvas')) # renvoie a la page canvas
 
 @auth.route('/signup', methods=['GET', 'POST']) # definition page d'inscription -> route = chemin
 def signup():
