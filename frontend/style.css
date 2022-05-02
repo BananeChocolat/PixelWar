@@ -1,3 +1,7 @@
+.maClasse {
+  background:bg-fondu, bg-GRRR-GRRR ;
+}
+
 body{
     --CANVAS-WIDTH: 800px;
     --CANVAS-HEIGHT: 800px;
@@ -6,13 +10,8 @@ body{
     border: 0;
 }
 
-a{
-    text-decoration: none;
-    color: #fff;
-}
-
-html {
-    background-color: rgb(50, 50, 50);
+.bg-fondu{
+    background:linear-gradient(rgb(78, 78, 78),rgb(185, 185, 185));
 }
 
 html::-webkit-scrollbar {
@@ -173,7 +172,7 @@ nav li {
 }
 
 nav a {
-  color: white;
+  color: rgb(255, 255, 255);
   text-decoration: none;
   font-size: 1.2rem;
   text-transform: uppercase;
@@ -316,9 +315,11 @@ ul{
 
 :root {
     --clr-neon: hsl(317 100% 54%);
-    --clr-bg: hsl(323 21% 16%);
+    --clr-bg: hsl(321, 21%, 16%);
   }
-  
+  html{
+    background: hsl(321, 21%, 16%);
+    }
   *,
   *::before,
   *::after {
