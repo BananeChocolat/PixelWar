@@ -169,6 +169,9 @@ nav a {
   text-transform: uppercase;
   opacity: 0;
   transition: opacity 150ms ease-in-out;
+  border: 0.125em solid;
+  padding: 0.18em;
+  border-radius: 0.25em;
 }
 
 nav a:hover {
@@ -238,8 +241,8 @@ nav a:hover {
     background: black;
     position: absolute;
     top: 1.25em;
-    left: 0;
-    right: 0;
+    left: -1px;
+    right: -1px;
     transform: scale(0, 1);
     transition: transform ease-in-out 250ms;
   }
