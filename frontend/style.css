@@ -10,6 +10,11 @@ body{
     border: 0;
 }
 
+a{
+  text-decoration: None;
+  color:#fff;
+}
+
 .bg-fondu{
     background:linear-gradient(rgb(78, 78, 78),rgb(185, 185, 185));
 }
