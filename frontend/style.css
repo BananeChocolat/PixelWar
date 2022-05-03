@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 .maClasse {
   background:bg-fondu, bg-GRRR-GRRR ;
 }
@@ -17,10 +18,33 @@ a{
 
 .bg-fondu{
     background:linear-gradient(rgb(78, 78, 78),rgb(185, 185, 185));
+=======
+* {
+  padding: 0;
+  margin: 0;
+  outline: 0;
+  overflow: hidden;
+}
+
+html, body {
+  --CANVAS-WIDTH: 800px;
+  --CANVAS-HEIGHT: 800px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgb(50, 50, 50);
+>>>>>>> Stashed changes
 }
 
 html::-webkit-scrollbar {
     display: none;
+}
+
+a {
+  text-decoration: none;
+  color:#000000
 }
 
 #canvas {
@@ -28,20 +52,6 @@ html::-webkit-scrollbar {
     height: var(--CANVAS-HEIGHT);
 
     image-rendering: pixelated;
-}
-
-#scale {
-    transform: scale(1);
-    transform-origin: center; 
-    font-size: 0;  
-}
-
-#position {
-    position: absolute;
-    
-    left: 50vw;
-    top: 50vh;
-    transform: translateX(-50%) translateY(-50%);
 }
 
 #camera {
@@ -52,6 +62,23 @@ html::-webkit-scrollbar {
     position: relative;
     user-select: none !important;
 }
+
+#zoom {
+  width: 100%;
+  height: 100%;
+  transform-origin: 0px 0px;
+  transform: scale(1) translate(0px, 0px);
+  cursor: grab;
+}
+
+div#zoom > canvas {
+  width: 100%;
+  height: auto;
+}
+
+
+
+
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:300,600');
 
 :root {

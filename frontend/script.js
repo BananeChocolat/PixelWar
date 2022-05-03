@@ -31,78 +31,61 @@ function shader(pixels){
   }
 }
 
+function limitNumberWithinRange(num, min, max){
+  const MIN = min;
+  const MAX = max;
+  const parsed = parseInt(num)
+  return Math.min(Math.max(parsed, MIN), MAX)
+}
 
-
-const pixelslist = loadFile('./frontend/canvas.csv').split(',').map(Number);
+const pixelslist = loadFile('canvas.csv').split(',').map(Number);
 
 const pixels = Uint8ClampedArray.from(pixelslist);
 
 const imageData = new ImageData(pixels, WIDTH, HEIGHT);
 
 ctx.putImageData(imageData, 0, 0);
-var scaleNum = 1
-// zoomer
-const scale = document.getElementById('scale');
-window.addEventListener('scroll', function(){
-  scaleNum = scrollY/100 + 1
-  scale.style.transform = `scale(${scaleNum})`;
-});
-
-// bouger
-
-
-var mousePosition;
-var offset = [0,0];
-var isDown = false;
-var drag = false;
-
-const position = document.getElementById('position');
-position.addEventListener('mousedown', function(e) {
-  drag = false;
-  console.log('mousedown');
-
-  isDown = true;
-  offset = [
-      position.offsetLeft - e.clientX,
-      position.offsetTop - e.clientY
-  ];
-
-}, true);
-
-
-document.addEventListener('mouseup', function(event) {
-
-  if (!drag) {
-    mousePosition = {
-  
-      x : event.clientX,
-      y : event.clientY
-
-    };
-    console.log(`click scale ${offset[0]/scaleNum} ${offset[1]/scaleNum}`);
-    console.log(`click ${offset[0]} ${offset[1]}`);
-    console.log(scaleNum);
-  };
-
-  console.log('mouseup');
-
-  isDown = false;
-}, true);
 
 
 
-document.addEventListener('mousemove', function(event) {
-  event.preventDefault();
-  drag = true;
-  if (isDown) {
-      mousePosition = {
-  
-          x : event.clientX,
-          y : event.clientY
-  
-      };
+var scale = 1,
+  panning = false,
+  pointX = 0,
+  pointY = 0,
+  start = { x: 0, y: 0 },
+  zoom = document.getElementById("zoom");
 
-      position.style.left = (mousePosition.x + offset[0]) + 'px';
-      position.style.top = (mousePosition.y + offset[1]) + 'px';
+function setTransform() {
+  zoom.style.transform = "translate(" + pointX + "px, " + pointY + "px) scale(" + scale + ")";
+}
+
+zoom.onmousedown = function (e) {
+  e.preventDefault();
+  start = { x: e.clientX - pointX, y: e.clientY - pointY };
+  panning = true;
+}
+
+zoom.onmouseup = function (e) {
+  panning = false;
+}
+
+zoom.onmousemove = function (e) {
+  e.preventDefault();
+  if (!panning) {
+    return;
   }
-}, true);
+  pointX = (e.clientX - start.x);
+  pointY = (e.clientY - start.y);
+  setTransform();
+}
+
+zoom.onwheel = function (e) {
+  e.preventDefault();
+  var xs = (e.clientX - pointX) / scale,
+    ys = (e.clientY - pointY) / scale,
+    delta = (e.wheelDelta ? e.wheelDelta : -e.deltaY);
+  (delta > 0) ? (scale *= 1.2) : (scale /= 1.2);
+  pointX = e.clientX - xs * scale;
+  pointY = e.clientY - ys * scale;
+  setTransform();
+}
