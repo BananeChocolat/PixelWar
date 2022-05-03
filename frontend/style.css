@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 .maClasse {
   background:bg-fondu, bg-GRRR-GRRR ;
 }
@@ -18,8 +18,9 @@ a{
 
 .bg-fondu{
     background:linear-gradient(rgb(78, 78, 78),rgb(185, 185, 185));
-=======
-* {
+}
+
+*{
   padding: 0;
   margin: 0;
   outline: 0;
@@ -35,7 +36,7 @@ html, body {
   height: 100%;
   overflow: hidden;
   background-color: rgb(50, 50, 50);
->>>>>>> Stashed changes
+
 }
 
 html::-webkit-scrollbar {
