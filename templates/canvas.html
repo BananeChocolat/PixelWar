@@ -13,12 +13,23 @@
 <header>
   <tartine class="logo" font="mono" style="margin-top: 8px;margin-bottom: 9px;margin-left: 5px;padding-left: 12px;"><a href="/">PIXELWAR</a></tartine>
 <input type="checkbox" id="nav-toggle" class="nav-toggle">
+{% if not current_user.is_authenticated %}
 <nav>
   <ul id="list">
     <li1><a href="login">login</a></li1>
     <li><a href="signup">register</a></li>
   </ul>
 </nav>
+{% endif %}
+{% if current_user.is_authenticated %}
+<nav>
+<ul id="list">
+  <li1><a href="{{ url_for('auth.logout') }}">lougout</a></li1>
+  
+</ul>
+</nav>
+{% endif %}
+
 <label for="nav-toggle" class="nav-toggle-label">
   <span></span>
 </label>
