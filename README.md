@@ -12,3 +12,4 @@ To do :
 - [ ] Setup les serveurs et heberger une version bêta du site online
 - [ ] Ajouter des sécurités pour éviter bots  
 - [ ] Recupérer la grille non pas grace aux requêtes python mais grâce à une api   
+- [ ] Clean site entier
