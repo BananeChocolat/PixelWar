@@ -1,8 +1,7 @@
 #on import les packages
-from flask import Blueprint, render_template, flash,Flask, request, jsonify
+from flask import Blueprint, render_template, flash, request, jsonify
 from flask_login import login_required, current_user
 from __init__ import create_app, db # on importe les paquets contenus dans le fichier __init__
-from editpixel import edit_pixel
 
 
 main = Blueprint('main', __name__)
@@ -20,10 +19,9 @@ app = create_app() # on cree l'app (voir __init__.py)
 if __name__ == '__main__': 
     db.create_all(app=create_app()) # cree la db sqlite 
     app.run(debug=True) # execute l'app en mode debug
-
-
+    
 @main.route('/editpixel', methods=['POST']) 
 def foo():
     data = request.json
+    print(data)
     return jsonify(data)
-    
