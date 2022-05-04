@@ -2,7 +2,23 @@
 from flask import Blueprint, render_template, flash, request, jsonify
 from flask_login import login_required, current_user
 from __init__ import create_app, db # on importe les paquets contenus dans le fichier __init__
+from datetime import datetime
 
+jail={}
+
+
+
+def add_acc_time(account):
+    
+    jail[account]=datetime.now()
+
+def check_time(account):
+    a=datetime.now()
+    difference=jail[account]-a
+    if difference.total_seconds()>300.0:
+        return True
+    else:
+        return False
 
 main = Blueprint('main', __name__)
 
@@ -24,4 +40,14 @@ if __name__ == '__main__':
 def foo():
     data = request.json
     print(data)
-    return jsonify(data)
+    if data['username'] not in jail:
+        add_acc_time(data['username'])
+        return jsonify({'success':'True'})
+    else:
+        if check_time(data['username']):
+            add_acc_time(data['username'])
+            return jsonify({'success':'True'})
+        else:
+            return jsonify({'success':'False'})
+
+    
