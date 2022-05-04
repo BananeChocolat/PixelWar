@@ -9,10 +9,11 @@ jail={}
 
 
 def add_acc_time(account):
-    
+    """Ajoute un compte a la 'prison' permet cooldown"""
     jail[account]=datetime.now()
 
 def check_time(account):
+    """Renvoie vrai si le compte n'a pas fait de requete dans les 5 dernieres minutes (delai)"""
     a=datetime.now()
     difference=jail[account]-a
     if difference.total_seconds()>300.0:
@@ -39,15 +40,18 @@ if __name__ == '__main__':
 @main.route('/editpixel', methods=['POST']) 
 def foo():
     data = request.json
-    print(data)
-    if data['username'] not in jail:
-        add_acc_time(data['username'])
-        return jsonify({'success':'True'})
+    username=data['username']
+    if username not in jail: # l'utilisateur n'a jamais fait de requete alors il est ajouté à jail
+        add_acc_time(username)
+        print(f'Added cooldown for {username} : {jail[username]}')
+        return jsonify({'success':'True'}) # il n'a jamais fais de requetes donc c'est validé
     else:
-        if check_time(data['username']):
-            add_acc_time(data['username'])
+        if check_time(username):  # si le cooldown utilisateur depasse 5min c'est bon sinon non
+            add_acc_time(username)
+            print(f'New cooldown for {username} : {jail[username]}')
             return jsonify({'success':'True'})
         else:
+            print(f'Waiting cooldown for {username} : {jail[username]}')
             return jsonify({'success':'False'})
 
     
