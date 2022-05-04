@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, flash, request, jsonify
 from flask_login import login_required, current_user
 from __init__ import create_app, db # on importe les paquets contenus dans le fichier __init__
 from datetime import datetime
-from editpixel import edit_pixel
+from editpixel import edit_pixel,save_to_csv
 import csv
 
 
@@ -48,11 +48,13 @@ def foo():
     if username not in jail: # l'utilisateur n'a jamais fait de requete alors il est ajouté à jail
         add_acc_time(username)
         print(f'Added cooldown for {username} : {jail[username]}')
+        edit_pixel(data['position'][0],data['position'][1],data['color'][0],data['color'][1],data['color'][2],'./frontend/canvas.csv')
         return jsonify({'success':'True'}) # il n'a jamais fais de requetes donc c'est validé
     else:
         if check_time(username):  # si le cooldown utilisateur depasse 5min c'est bon sinon non
             add_acc_time(username)
             print(f'New cooldown for {username} : {jail[username]}')
+            edit_pixel(data['position'][0],data['position'][1],data['color'][0],data['color'][1],data['color'][2],'./frontend/canvas.csv')
             return jsonify({'success':'True'})
         else:
             print(f'Waiting cooldown for {username} : {jail[username]}')
