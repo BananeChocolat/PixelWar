@@ -53,13 +53,15 @@ window.onload = function(){
 	pointX = 0,
 	pointY = 0,
 	drag = false,
-	start = { x: 0, y: 0 };
+	start = { x: 0, y: 0 },
+	canvasHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--CANVAS-WIDTH')),
+	canvasWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--CANVAS-HEIGHT'));
 	
 	
 	var zoom = document.getElementById('zoom');
 	
 	function setTransform() {
-		zoom.style.transform = "translate(" + pointX + "px, " + pointY + "px) scale(" + scale + ")";
+		zoom.style.transform = "translate(" + pointX + "px, " + (pointY - 59)  + "px) scale(" + scale + ")";
 	}
 	
 	zoom.onmousedown = function (e) {
@@ -97,18 +99,8 @@ window.onload = function(){
 	
 	zoom.onclick = function (e) {
 		e.preventDefault();
-		if (!drag) {
-			console.log('clicked');
-			console.log(e.clientX, e.clientY);
-			console.log(pointX, pointY);
-			console.log(start);
-			
-			
-			// pointX = (e.clientX - pointX);
-			// pointY = (e.clientY - pointY);
-			// setTransform();
-			
-			
+		if (!drag) {			
+			console.log('Clicked pixel at x:' + Math.floor(100*(start.x/scale)/canvasWidth) + ' / y:' + Math.floor(100*(start.y/scale)/canvasHeight));
 		};
 	}
 };

@@ -9,7 +9,8 @@
 		<script type="text/javascript" src="{{ url_for('static',filename='script.js')}}" defer></script>
 		<link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}">
 	</head>
-
+	
+	
 	<div class="header">
 		<a href="/" class="logo">PIXELWAR</a>
 		<div class="header-right">
@@ -17,14 +18,14 @@
 			<a href="login">Login</a>
 			<a href="signup">Register</a>
 			{% endif %}
-
+			
 			{% if current_user.is_authenticated %}
 			<a href="{{ url_for('auth.logout') }}">Logout</a>
 			{% endif %}
-
+			
 		</div>
 	</div>
-
+	
 	<body>
 		<div id="camera">
 			<div id="zoom">
