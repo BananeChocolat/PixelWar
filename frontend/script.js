@@ -55,7 +55,6 @@ window.onload = function(){
     start = { x: 0, y: 0 };
 
     var zoom = document.getElementById('zoom');
-    console.log(zoom);
 
     function setTransform() {
       zoom.style.transform = "translate(" + pointX + "px, " + pointY + "px) scale(" + scale + ")";
