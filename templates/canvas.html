@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< Updated upstream
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,39 +9,45 @@
     <link rel="icon" href="{{ url_for('static',filename='favicon.ico')}}" type="image/x-icon">
     <script type="text/javascript" src="{{ url_for('static',filename='script.js')}}" defer></script>
     <link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}">
+=======
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>PixelWar</title>
+	<link rel="icon" href="{{ url_for('static',filename='favicon.ico')}}" type="image/x-icon">
+	<script type="text/javascript" src="{{ url_for('static',filename='script.js')}}" defer></script>
+	<link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}">
+>>>>>>> Stashed changes
 </head>
 
 <header>
-  <tartine class="logo" font="mono" style="margin-top: 8px;margin-bottom: 9px;margin-left: 5px;padding-left: 12px;"><a href="/">PIXELWAR</a></tartine>
-<input type="checkbox" id="nav-toggle" class="nav-toggle">
-{% if not current_user.is_authenticated %}
-<nav>
-  <ul id="list">
-    <li1><a href="login">login</a></li1>
-    <li><a href="signup">register</a></li>
-  </ul>
-</nav>
-{% endif %}
-{% if current_user.is_authenticated %}
-<nav>
-<ul id="list">
-  <li1><a href="{{ url_for('auth.logout') }}">lougout</a></li1>
-  
-</ul>
-</nav>
-{% endif %}
+	<tartine class="logo" font="mono" style="margin-top: 8px;margin-bottom: 9px;margin-left: 5px;padding-left: 12px;"><a href="/">PIXELWAR</a></tartine>
 
-<label for="nav-toggle" class="nav-toggle-label">
-  <span></span>
-</label>
+	{% if not current_user.is_authenticated %}
+	<nav>
+		<ul id="list">
+			<li1><a href="login">login</a></li1>
+			<li><a href="signup">register</a></li>
+		</ul>
+	</nav>
+	{% endif %}
+
+	{% if current_user.is_authenticated %}
+	<nav>
+		<ul id="list">
+			<li1><a href="{{ url_for('auth.logout') }}">lougout</a></li1>
+			
+		</ul>
+	</nav>
+	{% endif %}
+
 </header>
-<xxx ></xxx>
 
 <body>
-  <div id="camera">
-      <div id="zoom">
-          <canvas id="canvas" width="100" height="100"></canvas>
-      </div>
-  </div>
+	<div id="camera">
+		<div id="zoom">
+			<canvas id="canvas" width="100" height="100"></canvas>
+		</div>
+	</div>
 </body>
 </html>
