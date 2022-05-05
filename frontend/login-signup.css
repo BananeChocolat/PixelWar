@@ -1,0 +1,61 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+	overflow: hidden;
+	background-color: #111;
+	padding: 5px 10px;
+}
+
+.header a {
+	float: left;
+	color: lightgrey;
+	text-align: center;
+	padding: 6px 12px 6px 12px;
+	margin: 6px 12px 6px 12px;
+	text-decoration: none;
+	font-size: 18px;
+	line-height: 25px;
+	border-radius: 4px;
+	font-family: 'VT323', monospace;
+	
+}
+
+.header a.logo {
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.header a:hover {
+	background-color: rgb(186, 65, 223);
+	color: white;
+}
+
+.header-right {
+	float: right;
+}
+
+.hero.is-fullheight {
+    min-height: 100vh
+}
+
+.hero-body {
+    padding-bottom: 1.5rem;
+    padding-top: 1.5rem
+}
+
+.has-text-centered {
+    text-align: center !important
+}
+
+.container {
+    margin: 0 auto;
+    position: relative
+}
+
+.container {
+    max-width: 1152px;
+    width: 1152px
+}

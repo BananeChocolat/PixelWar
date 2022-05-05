@@ -1,7 +1,3 @@
-.maClasse {
-	background:bg-fondu, bg-GRRR-GRRR ;
-}
-
 * {
 	padding: 0;
 	margin: 0;
@@ -22,16 +18,6 @@ html, body {
 html::-webkit-scrollbar {
 	display: none;
 }
-
-a{
-	text-decoration: None;
-	color:#fff;
-}
-
-.bg-fondu{
-	background:linear-gradient(rgb(78, 78, 78),rgb(185, 185, 185));
-}
-
 
 #canvas {
 	width: var(--CANVAS-WIDTH);
@@ -55,7 +41,6 @@ div#zoom > canvas {
 
 #position {
 	position: absolute;
-	
 	left: 50vw;
 	top: 50vh;
 	transform: translateX(-50%) translateY(-50%);
@@ -68,377 +53,40 @@ div#zoom > canvas {
 	overflow: hidden;
 	position: relative;
 	user-select: none !important;
-}
-@import url('https://fonts.googleapis.com/css?family=Work+Sans:300,600');
-
-:root {
-	--background: rgba(36, 36, 36, 0.377);
+	background-image: linear-gradient(to bottom, #333 10%, black 60%);
 	
 }
 
-*, *::before, *::after {
-	box-sizing: border-box;
+.header {
+	overflow: hidden;
+	background-color: #111;
+	padding: 5px 10px;
 }
 
-header{
-	margin: 0;
-	background: #222;
-	position: fixed;
-	font-family: 'Work Sans', sans-serif;
-	z-index: 999;
-	font-weight: 400;
-	width: 100%;
-	height: 50px;
-}
-
-
-.content {
-	height: 200vh;
-	background-image: url(//unsplash.it/1000/1000);
-	background-color: #333;
-	background-blend-mode: multiply;
-	background-size: cover;
-	display: grid;
-	place-items: center;
-}
-
-/* navigation styles start here */
-
-tartine {
+.header a {
+	float: left;
+	color: lightgrey;
+	text-align: center;
+	padding: 6px 12px 6px 12px;
+	margin: 6px 12px 6px 12px;
+	text-decoration: none;
+	font-size: 18px;
+	line-height: 25px;
+	border-radius: 4px;
 	font-family: 'VT323', monospace;
-	color: aliceblue;
-	font-size: 2em;
-	letter-spacing: 0.2em;
-	z-index: 999;
-}
-
-
-xxx{
-	position: fixed;
-	z-index: 9;
-	width: 100%;
-	height : 1px;
-	margin-top: 50px;
-	background : rgba(223, 217, 217, 0.425);
 	
 }
 
-/* changed this from the tutorial video to
-allow it to gain focus, making it tabbable */
-.nav-toggle {
-	position: absolute !important;
-	top: -9999px !important;
-	left: -9999px !important;
+.header a.logo {
+	font-size: 25px;
+	font-weight: bold;
 }
 
-.nav-toggle:focus ~ .nav-toggle-label {
-	outline: 3px solid rgba(lightblue, .75);
-}
-
-.nav-toggle-label {
-	position: absolute;
-	top: 0;
-	left: 0;
-	margin-left: 1em;
-	height: 100%;
-	display: flex;
-	align-items: center;
-}
-
-.nav-toggle-label span,
-.nav-toggle-label span::before,
-.nav-toggle-label span::after {
-	display: block;
-	background: white;
-	height: 2px;
-	width: 2em;
-	border-radius: 2px;
-	position: relative;
-}
-
-.nav-toggle-label span::before,
-.nav-toggle-label span::after {
-	content: '';
-	position: absolute;
-}
-
-.nav-toggle-label span::before {
-	bottom: 7px;
-}
-
-.nav-toggle-label span::after {
-	top: 7px;
-}
-
-nav {
-	position: absolute;
-	text-align: left;
-	top: 100%;
-	left: 0;
-	background: var(--background);
-	width: 100%;
-	transform: scale(1, 0);
-	transform-origin: top;
-	transition: transform 400ms ease-in-out;
-}
-
-nav ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-nav li {
-	margin-bottom: 1em;
-	margin-left: 1em;
-}
-
-nav a {
-	color: rgb(255, 255, 255);
-	text-decoration: none;
-	font-size: 1.2rem;
-	text-transform: uppercase;
-	opacity: 0;
-	transition: opacity 150ms ease-in-out;
-	border: 0.125em solid;
-	padding: 0.18em;
-	border-radius: 0.25em;
-}
-
-nav b {
+.header a:hover {
+	background-color: rgb(186, 65, 223);
 	color: white;
-	text-decoration: none;
-	font-size: 1.2rem;
-	text-transform: uppercase;
-	transition: opacity 150ms ease-in-out;
-	padding: 0.18em;
-	border-radius: 0.25em;
-	font-weight: 100;
 }
 
-nav a:hover {
-	color: #000;
-}
-
-nav b:hover {
-	color: #000;
-}
-
-.nav-toggle:checked ~ nav {
-	transform: scale(1,1);
-}
-
-.nav-toggle:checked ~ nav a {
-	opacity: 1;
-	transition: opacity 250ms ease-in-out 250ms;
-}
-
-@media screen and (min-width: 800px) {
-	.nav-toggle-label {
-		display: none;
-	}
-	
-	header {
-		display: grid;
-		grid-template-columns: 0.2fr auto minmax(600px, 5fr) 0.2fr;
-	}
-	
-	.logo {
-		grid-column: 2 / 3;
-	}
-	
-	nav {
-		all: unset; /* this causes issues with Edge, since it's unsupported */
-		
-		/* the following lines are not from my video, but add Edge support */
-		position: relative;
-		text-align: left;
-		transition: none;
-		transform: scale(1,1);
-		background: none;
-		top: initial;
-		left: initial;
-		/* end Edge support stuff */
-		
-		grid-column: 3 / 4;
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
-	}
-	
-	nav ul {
-		display: flex;
-	}
-	
-	nav li {
-		margin-left: 3em;
-		margin-bottom: 0;
-	}
-	
-	nav a {
-		opacity: 1;
-		position: relative;
-	}
-	
-	nav b {
-		opacity: 1;
-		position: relative;
-	}
-	
-	nav a::before {
-		content: '';
-		display: block;
-		height: 5px;
-		background: black;
-		position: absolute;
-		top: 1.25em;
-		left: -1px;
-		right: -1px;
-		transform: scale(0, 1);
-		transition: transform ease-in-out 250ms;
-	}
-	
-	
-	nav a:hover::before {
-		transform: scale(1,1);
-	}
-	
-	nav b::before {
-		content: '';
-		display: block;
-		height: 5px;
-		background: black;
-		position: absolute;
-		top: 1.25em;
-		left: -1px;
-		right: -1px;
-		transform: scale(0, 1);
-		transition: transform ease-in-out 250ms;
-	}
-	
-	
-	nav b:hover::before {
-		transform: scale(1,1);
-		
-		
-		
-		
-		
-		
-	}  
-	
-	
-	
-	
-	
-	ul{
-		padding: 0px;
-	}
-	
-	:root {
-		--clr-neon: hsl(317 100% 54%);
-		--clr-bg: hsl(321, 21%, 16%);
-	}
-	html{
-		background: hsl(321, 21%, 16%);
-	}
-	*,
-	*::before,
-	*::after {
-		box-sizing: border-box;
-	}
-	
-	carpe{
-		background: rgb(25, 19 , 26 );
-		font-family: 'VT323', monospace;
-		color: var(--clr-neon);
-		text-align: center;
-		margin-top: 12vh;
-		padding: 0px;
-		text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.192), 0 0 0.2em currentColor;
-	}
-	.neon:hover{
-		text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.192), 0 0 0.45em currentColor;
-		transition: text-shadow 100ms linear;
-	}
-	.neon::before{
-		text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.192), 0 0 0.45em currentColor;
-		transition: text-shadow 100ms linear;
-	}
-	.neon::after{
-		text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.192), 0 0 0.45em currentColor;
-		transition: text-shadow 100ms linear;
-	}
-	.neon:hover::after{
-		text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.192), 0 0 0.45em currentColor;
-		transition: text-shadow 100ms linear;
-	}
-	.neon-button {
-		font-size: 4rem;
-		
-		display: inline-block;
-		cursor: pointer;
-		text-decoration: none;
-		color: var(--clr-neon);
-		border: var(--clr-neon) 0.125em solid;
-		padding: 0.15em 0.50em;
-		border-radius: 0.25em;
-		
-		text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.192), 0 0 0.45em currentColor;
-		
-		box-shadow: inset 0 0 0.5em 0 var(--clr-neon), 0 0 0.5em 0 var(--clr-neon);
-		
-		position: relative;
-	}
-	
-	.neon-button::before {
-		pointer-events: none;
-		content: "";
-		position: absolute;
-		background: var(--clr-neon);
-		top: 120%;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		
-		transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
-		filter: blur(1em);
-		opacity: 0.7;
-	}
-	
-	.neon-button::after {
-		content: "";
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		box-shadow: 0 0 2em 0.5em var(--clr-neon);
-		opacity: 0;
-		background-color: var(--clr-neon);
-		z-index: -1;
-		transition: opacity 100ms linear;
-	}
-	
-	.neon-button:hover,
-	.neon-button:focus {
-		color: var(--clr-bg);
-		text-shadow: none;
-	}
-	
-	.neon-button:hover::before,
-	.neon-button:focus::before {
-		opacity: 1;
-	}
-	.neon-button:hover::after,
-	.neon-button:focus::after {
-		opacity: 1;
-	}
-	h1{
-		font-family: '', monospace;
-		color: var(--clr-neon);
-		text-align: center;
-		font-size: 8rem;
-		margin-top: 20vh;
-	}
+.header-right {
+	float: right;
 }

@@ -7,40 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PixelWar</title>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='login-signup.css')}}" />
 </head>
 
 <body>
+
+	<div class="header">
+		<a href="/" class="logo">PIXELWAR</a>
+		<div class="header-right">
+            
+			{% if not current_user.is_authenticated %}
+			<a href="login">Login</a>
+			<a href="signup">Register</a>
+			{% endif %}
+
+			{% if current_user.is_authenticated %}
+			<a href="{{ url_for('auth.logout') }}">Logout</a>
+			{% endif %}
+
+		</div>
+	</div>
+
 <section class="hero is-fullheight" style="background-color:#000;">
-
-    <div class="hero-head">
-        <nav class="navbar">
-            <div class="container">
-
-                <div id="navbarMenuHeroA" class="navbar-menu">
-                    <div class="navbar-end">
-                        <a href="{{ url_for('main.canvas') }}" class="navbar-item">
-                            Canvas
-                        </a>
-                        {% if not current_user.is_authenticated %}
-                        <a href="{{ url_for('auth.login') }}" class="navbar-item">
-                            Login
-                        </a>
-                        <a href="{{ url_for('auth.signup') }}" class="navbar-item">
-                            Sign Up
-                        </a>
-                        {% endif %}
-                        {% if current_user.is_authenticated %}
-                        <a href="{{ url_for('auth.logout') }}" class="navbar-item">
-                            Logout
-                        </a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-
     <div class="hero-body">
         <div class="container has-text-centered">
             {% block content %}{% endblock %}
