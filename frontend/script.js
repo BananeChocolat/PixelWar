@@ -4,7 +4,7 @@ ctx.imageSmoothingEnabled = false;
 
 const WIDTH = 100;
 const HEIGHT = 100;
-console.log(`WIDTH = ${WIDTH}\nHEIGHT = ${HEIGHT}`);
+console.log(`Dimensions du canvas :\nWIDTH = ${WIDTH}\nHEIGHT = ${HEIGHT}`);
 
 const arrayBuffer = new ArrayBuffer(WIDTH * HEIGHT * 4);
 
@@ -99,8 +99,18 @@ window.onload = function(){
 	
 	zoom.onclick = function (e) {
 		e.preventDefault();
-		if (!drag) {			
+		if (!drag) {	// if click		
 			console.log('Clicked pixel at x:' + Math.floor(100*(start.x/scale)/canvasWidth) + ' / y:' + Math.floor(100*(start.y/scale)/canvasHeight));
+
+			// WIP : click pour focus sur un pixel 
+			
+			// console.log(start)
+			// console.log(e.clientX, e.clientY)
+			// console.log(pointX, pointY)
+			// pointX = (pointX + start.x - 400/scale);
+			// pointY = (pointY + start.y - 400/scale);
+			// setTransform();
+
 		};
 	}
 };
