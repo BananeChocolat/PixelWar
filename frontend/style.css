@@ -1,4 +1,5 @@
 * {
+	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
 	outline: 0;
@@ -88,4 +89,67 @@ html::-webkit-scrollbar {
 
 .header-right {
 	float: right;
+}
+
+  /* Positionnez la forme Popup */
+  .login-popup {
+	position: relative;
+	text-align: center;
+	width: 100%;
+  }
+  /* Masquez la forme Popup */
+  .form-popup {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	transform: translate(15px, 70px);
+	border: 2px solid #666;
+	z-index: 9;
+  }
+  /* Styles pour le conteneur de la forme */
+  .form-container {
+	max-width: 300px;
+	padding: 20px;
+	background-color: #444;
+  }
+  /* Largeur complète pour les champs de saisie */
+  .form-container input[type="text"],
+  .form-container input[type="password"] {
+	width: 100%;
+	padding: 10px;
+	margin: 5px 0 22px 0;
+	border: none;
+	background: #eee;
+  }
+  /* Quand les entrées sont concentrées, faites quelque chose */
+  .form-container input[type="text"]:focus,
+  .form-container input[type="password"]:focus {
+	background-color: #ddd;
+	outline: none;
+  }
+  /* Stylez le bouton de connexion */
+  .form-container .btn {
+	background-color: #8ebf42;
+	color: #fff;
+	padding: 12px 20px;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	margin-top: 10px;
+	opacity: 0.8;
+  }
+  /* Stylez le bouton pour annuler */
+  .form-container .cancel {
+	background-color: #cc0000;
+  }
+  /* Planez les effets pour les boutons */
+  .form-container .btn:hover,
+  .open-button:hover {
+	opacity: 1;
+  }
+
+#pixel-edit {
+	margin: 0 15px 15px 15px;
+	color: white;
 }

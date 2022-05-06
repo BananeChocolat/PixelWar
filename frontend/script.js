@@ -99,9 +99,13 @@ window.onload = function(){
 	
 	zoom.onclick = function (e) {
 		e.preventDefault();
-		if (!drag) {	// if click		
-			console.log('Clicked pixel at x:' + Math.floor(100*(start.x/scale)/canvasWidth) + ' / y:' + Math.floor(100*(start.y/scale)/canvasHeight));
+		if (!drag) {	// if click
+			var clicked_pixel = {x:Math.floor(100*(start.x/scale)/canvasWidth), y:Math.floor(100*(start.y/scale)/canvasHeight)}		
+			console.log(`clicked pixel @ ${clicked_pixel.x}, ${clicked_pixel.y}`);
 
+			document.getElementById("pixel-edit").innerHTML = `pixel @ ${clicked_pixel.x}, ${clicked_pixel.y}`;
+			openForm()
+			
 			// WIP : click pour focus sur un pixel 
 			
 			// console.log(start)
@@ -113,5 +117,5 @@ window.onload = function(){
 
 		};
 	}
-};
 
+};
