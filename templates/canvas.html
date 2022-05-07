@@ -8,12 +8,10 @@
 		<link rel="icon" href="{{ url_for('static',filename='favicon.ico')}}" type="image/x-icon">
 		<script type="text/javascript" src="{{ url_for('static',filename='script.js')}}" defer></script>
 		<link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}">
-		{% if current_user.is_authenticated %}
 		<script>
 			function openForm() {document.getElementById("popupForm").style.display = "block";}
 			function closeForm() {document.getElementById("popupForm").style.display = "none";}
 		</script>
-		{% endif %}
 	</head>
 	
 	
@@ -41,6 +39,7 @@
 
 		<!-- edit form WIP -->
 		<div class="login-popup">
+			{% if current_user.is_authenticated %}
 			<div class="form-popup" id="popupForm">
 			  <form action="" class="form-container" method="post">
 				<h2 id="pixel-edit">pixel</h2>
@@ -50,6 +49,14 @@
 				<button type="button" class="btn cancel" onclick="closeForm()">Fermer</button>
 			  </form>
 			</div>
-		  </div>
+			{% endif %}
+
+			{% if not current_user.is_authenticated %}
+			<div class="form-popup" id="popupForm" style="padding: 5px;">
+				<h2 id="pixel-edit">pixel</h2>
+				<a href="../login" style="text-decoration: underline; color: aqua;">login to edit pixel</a>
+			</div>
+			{% endif %}
+		</div>
 	</body>
 </html>
