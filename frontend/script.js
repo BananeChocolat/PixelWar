@@ -46,6 +46,7 @@ function getCanvas(){
 
 }
 
+getCanvas();
 setInterval(getCanvas,2000);
 
 
@@ -53,10 +54,11 @@ setInterval(getCanvas,2000);
 function openForm() {document.getElementById("popupForm").style.display = "block";}
 function closeForm() {document.getElementById("popupForm").style.display = "none";}
 
-function editPixel(x, y, r, g, b, username) {
+function editPixel(r, g, b, username) {
 	var http = new XMLHttpRequest();
-	var url = './editpixel'; // ca marche pas
-	var params = {'position':[x,y], 'color':[r,g,b], 'username':'admin'};
+	var url = '/editpixel'; // ca marche pas
+	var params = {'userid':"1", 'username':'crocogab','position':[clicked_pixel.x, clicked_pixel.y], 'color':[r,g,b]};
+	console.log(params);
 	http.open('POST', url, true);
 	http.setRequestHeader('Content-type', 'application/json');
 	http.send(params);
@@ -71,7 +73,6 @@ function hexToRgb() {
 	} : null;
 }
 
-window.onload = function(){ 
 	var scale = 1,
 	panning = false,
 	pointX = 0,
@@ -120,11 +121,11 @@ window.onload = function(){
 		pointY = e.clientY - ys * scale;
 		setTransform();
 	}
-	
+	var clicked_pixel = {x:0, y:0};
 	zoom.onclick = function (e) {
 		e.preventDefault();
 		if (!drag) {	// if click
-			var clicked_pixel = {x:Math.floor(100*(start.x/scale)/canvasWidth), y:Math.floor(100*(start.y/scale)/canvasHeight)}		
+			clicked_pixel = {x:Math.floor(100*(start.x/scale)/canvasWidth), y:Math.floor(100*(start.y/scale)/canvasHeight)}		
 			console.log(`clicked pixel @ ${clicked_pixel.x}, ${clicked_pixel.y}`);
 
 			document.getElementById("pixel-edit").innerHTML = `pixel @ ${clicked_pixel.x}, ${clicked_pixel.y}`;
@@ -141,5 +142,3 @@ window.onload = function(){
 
 		};
 	}
-
-};

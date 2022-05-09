@@ -41,7 +41,7 @@
 				<h2 id="pixel-edit">pixel</h2>
 				<label for="color"><strong>pick your color :</strong></label>
 				<input type="color" id="colorChoice" onchange="clickColor(0, -1, -1, 5)" value="#ff0000" style="width:85%;">
-				<button type="submit" class="btn" onclick="editPixel(x,y,hexToRgb().r, hexToRgb().g, hexToRgb().b)">Modifier ce pixel</button>
+				<button type="button" class="btn" onclick="editPixel(hexToRgb().r, hexToRgb().g, hexToRgb().b)">Modifier ce pixel</button>
 				<button type="button" class="btn cancel" onclick="closeForm()">Fermer</button>
 			  </form>
 			</div>
