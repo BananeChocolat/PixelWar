@@ -38,13 +38,16 @@ function limitNumberWithinRange(num, min, max){
 	return Math.min(Math.max(parsed, MIN), MAX)
 }
 
-const pixelslist = loadFile('/frontend/canvas.csv').split(',').map(Number);
+function getCanvas(){
+	const pixelslist = loadFile('/frontend/canvas.csv').split(',').map(Number);
+	const pixels = Uint8ClampedArray.from(pixelslist);
+	const imageData = new ImageData(pixels, WIDTH, HEIGHT);
+	ctx.putImageData(imageData, 0, 0);
 
-const pixels = Uint8ClampedArray.from(pixelslist);
+}
 
-const imageData = new ImageData(pixels, WIDTH, HEIGHT);
+setInterval(getCanvas,2000);
 
-ctx.putImageData(imageData, 0, 0);
 
 
 function openForm() {document.getElementById("popupForm").style.display = "block";}
