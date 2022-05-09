@@ -47,6 +47,27 @@ const imageData = new ImageData(pixels, WIDTH, HEIGHT);
 ctx.putImageData(imageData, 0, 0);
 
 
+function openForm() {document.getElementById("popupForm").style.display = "block";}
+function closeForm() {document.getElementById("popupForm").style.display = "none";}
+
+function editPixel(x, y, r, g, b, username) {
+	var http = new XMLHttpRequest();
+	var url = './editpixel'; // ca marche pas
+	var params = {'position':[x,y], 'color':[r,g,b], 'username':'admin'};
+	http.open('POST', url, true);
+	http.setRequestHeader('Content-type', 'application/json');
+	http.send(params);
+}
+
+function hexToRgb() {
+	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(document.getElementById("colorChoice").value);
+	return result ? {
+	  r: parseInt(result[1], 16),
+	  g: parseInt(result[2], 16),
+	  b: parseInt(result[3], 16)
+	} : null;
+}
+
 window.onload = function(){ 
 	var scale = 1,
 	panning = false,

@@ -48,7 +48,8 @@ def foo():
     if username not in jail: # l'utilisateur n'a jamais fait de requete alors il est ajouté à jail
         add_acc_time(username)
         print(f'Added cooldown for {username} : {jail[username]}')
-        edit_pixel(data['position'][0],data['position'][1],data['color'][0],data['color'][1],data['color'][2],'./frontend/canvas.csv')
+        x,y,r,g,b = data['position'][0], data['position'][1], data['color'][0], data['color'][1], data['color'][2]
+        edit_pixel(x,y,r,g,b, './frontend/canvas.csv')
         return jsonify({'success':'True'}) # il n'a jamais fais de requetes donc c'est validé
     else:
         if check_time(username):  # si le cooldown utilisateur depasse 5min c'est bon sinon non
