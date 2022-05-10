@@ -7,6 +7,7 @@
 		<title>PixelWar</title>
 		<link rel="icon" href="{{ url_for('static',filename='favicon.ico')}}" type="image/x-icon">
 		<script type="text/javascript" src="{{ url_for('static',filename='script.js')}}" defer></script>
+		<script type="text/javascript"> var current_user_username="{{ current_user.name }}";</script>
 		<link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}">
 	</head>
 	

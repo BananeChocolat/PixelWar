@@ -60,8 +60,8 @@ function editPixel(r, g, b, username) {
 	http.open('POST', url, true);
 	http.setRequestHeader('Content-type', 'application/json');
 
-	var params =JSON.stringify( {"username":"crocogab","position":[clicked_pixel.x, clicked_pixel.y], "color":[r,g,b]});
-	console.log(params);
+	var params =JSON.stringify( {"username":current_user_username,"position":[clicked_pixel.x, clicked_pixel.y], "color":[r,g,b]});
+	
 	
 	
 	http.send(params);
@@ -130,6 +130,7 @@ function hexToRgb() {
 		if (!drag) {	// if click
 			clicked_pixel = {x:Math.floor(100*(start.x/scale)/canvasWidth), y:Math.floor(100*(start.y/scale)/canvasHeight)}		
 			console.log(`clicked pixel @ ${clicked_pixel.x}, ${clicked_pixel.y}`);
+			console.log(`Username ${ current_user_username }`);
 
 			document.getElementById("pixel-edit").innerHTML = `pixel @ ${clicked_pixel.x}, ${clicked_pixel.y}`;
 			openForm()
