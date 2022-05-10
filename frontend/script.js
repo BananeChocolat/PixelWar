@@ -130,7 +130,7 @@ function hexToRgb() {
 		if (!drag) {	// if click
 			clicked_pixel = {x:Math.floor(100*(start.x/scale)/canvasWidth), y:Math.floor(100*(start.y/scale)/canvasHeight)}		
 			console.log(`clicked pixel @ ${clicked_pixel.x}, ${clicked_pixel.y}`);
-			console.log(`Username ${ current_user_username }`);
+			//console.log(`Username ${ current_user_username }`);
 
 			document.getElementById("pixel-edit").innerHTML = `pixel @ ${clicked_pixel.x}, ${clicked_pixel.y}`;
 			openForm()
