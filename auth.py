@@ -42,6 +42,10 @@ def signup():
         if user: # si user -> alors l'utilisateur existe et donc on renvoie a la page d'authentification
             flash('Email address already exists')
             return redirect(url_for('auth.signup'))
+        user2 = User.query.filter_by(name=name).first()
+        if user2:
+            flash('Username already exists. Try another one')
+            return redirect(url_for('auth.signup'))
         # sinon on ajoute l'utilisateur a la db 
         new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256')) # le pass est hashé en sha256
         db.session.add(new_user)
