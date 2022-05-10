@@ -57,10 +57,13 @@ function closeForm() {document.getElementById("popupForm").style.display = "none
 function editPixel(r, g, b, username) {
 	var http = new XMLHttpRequest();
 	var url = '/editpixel'; // ca marche pas
-	var params = {'userid':"1", 'username':'crocogab','position':[clicked_pixel.x, clicked_pixel.y], 'color':[r,g,b]};
-	console.log(params);
 	http.open('POST', url, true);
 	http.setRequestHeader('Content-type', 'application/json');
+
+	var params =JSON.stringify( {"userid":"1", "username":"crocogab","position":[clicked_pixel.x, clicked_pixel.y], "color":[r,g,b]});
+	console.log(params);
+	
+	
 	http.send(params);
 }
 

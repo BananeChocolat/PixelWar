@@ -43,7 +43,10 @@ if __name__ == '__main__':
     
 @main.route('/editpixel', methods=['POST']) 
 def foo():
+    
+
     data = request.json
+    
     username=data['username']
     if username not in jail: # l'utilisateur n'a jamais fait de requete alors il est ajouté à jail
         add_acc_time(username)
