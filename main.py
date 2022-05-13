@@ -75,7 +75,7 @@ def foo():
             edit_pixel(x,y,r,g,b, './frontend/canvas.csv')
             return jsonify({'success':'True'}) # il n'a jamais fais de requetes donc c'est validé
         else:
-            if check_time(username) or username=='admin': #tqt faut pas reverse engineer le site  # si le cooldown utilisateur depasse 5min c'est bon sinon non
+            if check_time(username) or username=='admin' or username=='admin1':#tqt faut pas reverse engineer le site  # si le cooldown utilisateur depasse 5min c'est bon sinon non
                 add_acc_time(username)
                 print(f'[EDIT] New cooldown for {username} : {jail[username]}')
                 edit_pixel(data['position'][0],data['position'][1],data['color'][0],data['color'][1],data['color'][2],'./frontend/canvas.csv')
