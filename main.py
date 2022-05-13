@@ -57,7 +57,7 @@ def canvas():
 app = create_app() # on cree l'app (voir __init__.py)
 if __name__ == '__main__': 
     db.create_all(app=create_app()) # cree la db sqlite 
-    app.run() 
+    app.run(host="0.0.0.0") 
 
 
 @main.route('/editpixel', methods=['POST']) 
