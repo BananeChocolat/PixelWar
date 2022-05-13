@@ -62,8 +62,7 @@ if __name__ == '__main__':
 
 @main.route('/editpixel', methods=['POST']) 
 def foo():
-    
-
+    username_list=get_all_users('db.sqlite')
     data = request.json
     
     username=data['username']
