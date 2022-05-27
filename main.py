@@ -6,12 +6,16 @@ from datetime import datetime
 from editpixel import edit_pixel,save_to_csv
 import sqlite3
 import logging
-
+import hashlib
 
 
 log=logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 
+def check_cookie(user,cookie):
+    password='PhraseSecrete1'+user+'PhraseSecrete2' # changer sur le vrai site
+    hash_password=hashlib.md5(password.encode()).hexdigest()
+    return hash_password==cookie
 
 def get_all_users(db):
     username_list=[]
@@ -57,24 +61,26 @@ def canvas():
 app = create_app() # on cree l'app (voir __init__.py)
 if __name__ == '__main__': 
     db.create_all(app=create_app()) # cree la db sqlite 
-    app.run(host="0.0.0.0") 
+    app.run() 
 
 
 @main.route('/editpixel', methods=['POST']) 
 def foo():
-    username_list=get_all_users('db.sqlite')
+    
+
     data = request.json
     
     username=data['username']
-    if username in username_list:
-        if username not in jail: # l'utilisateur n'a jamais fait de requete alors il est ajouté à jail
+    cookie=data['cookie']
+    if username in username_list and check_cookie(username,cookie):
+        if username not in jail : # l'utilisateur n'a jamais fait de requete alors il est ajouté à jail
             add_acc_time(username)
             print(f'[EDIT] Added cooldown for {username} : {jail[username]}')
             x,y,r,g,b = data['position'][0], data['position'][1], data['color'][0], data['color'][1], data['color'][2]
             edit_pixel(x,y,r,g,b, './frontend/canvas.csv')
             return jsonify({'success':'True'}) # il n'a jamais fais de requetes donc c'est validé
         else:
-            if check_time(username) or username=='admin' or username=='admin1':#tqt faut pas reverse engineer le site  # si le cooldown utilisateur depasse 5min c'est bon sinon non
+            if check_time(username):  # si le cooldown utilisateur depasse 5min c'est bon sinon non
                 add_acc_time(username)
                 print(f'[EDIT] New cooldown for {username} : {jail[username]}')
                 edit_pixel(data['position'][0],data['position'][1],data['color'][0],data['color'][1],data['color'][2],'./frontend/canvas.csv')
@@ -83,7 +89,7 @@ def foo():
                 print(f'[EDIT] Waiting cooldown for {username} : {jail[username]}')
                 return jsonify({'success':'False'})
     else:
-        print(f'[EDIT] Username not in DB : {username}')
+        print(f'[EDIT] Username not in DB : {username} | cookie : {cookie}')
         return jsonify({'sucess':'False'})
 
     
