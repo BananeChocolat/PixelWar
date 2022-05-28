@@ -10,6 +10,6 @@ To do :
 - [X] Patch bug zoom ( les coordonnées tendent vers 500 quand on zoom)
 - [ ] Patch tous les bugs mineurs
 - [ ] Setup les serveurs et heberger une version bêta du site online
-- [ ] Ajouter des sécurités pour éviter bots  
+- [X] Ajouter des sécurités pour éviter bots  
 - [X] Recupérer la grille non pas grace aux requêtes python mais grâce à une api   
 - [ ] Clean site entier
