@@ -81,6 +81,12 @@ setInterval(() => {
 //   console.log(minutes, secondes)
   temps = temps <= 0 ? 0 : temps - 1
   timerElement.innerText = `${minutes}:${secondes}`
+  if (temps ==0) {
+	  timerElement.style.display = "none";
+  }
+  else {
+	  timerElement.style.display = "block";
+  }
   
 }, 1000)
 

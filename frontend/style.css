@@ -19,6 +19,26 @@ html, body {
 	overflow: hidden;
 }
 
+#timer {
+	position: absolute;
+	border-radius: 20px;
+	top: 80%;
+	left: 50%;
+	width: 150px !important;
+	height: 80px;
+	z-index: 1;
+	width: 15em;
+	border: 5px solid rgb(104, 104, 104);
+	padding: 8px 12px;
+	background-color: #111;
+	color: #fff;
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+
 html::-webkit-scrollbar {
 	display: none;
 }
@@ -54,6 +74,7 @@ html::-webkit-scrollbar {
 	position: relative;
 	user-select: none !important;
 	background-image: linear-gradient(to bottom, #333 10%, black 60%);
+
 	
 }
 
