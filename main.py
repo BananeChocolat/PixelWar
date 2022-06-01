@@ -71,11 +71,16 @@ if __name__ == '__main__':
 @main.route('/cooldown')
 def cooldown():
     """Fonction get qui gere le cooldown"""
+    
     user=request.args.get('user')
-    if user not in jail or return_time(user)<0:
-        return jsonify({'user':user,'timer':0})
+    if len(user) >0:
+        print(f'Giving cooldown for {user}')
+        if user not in jail or return_time(user)<0:
+            return jsonify({'user':user,'timer':0})
+        else:
+            return jsonify({'user':user,'timer':int(return_time(user))})
     else:
-        return jsonify({'user':user,'timer':int(return_time(user))})
+        return jsonify({'visitor':True})
     
 
 @main.route('/editpixel', methods=['POST']) 

@@ -28,15 +28,17 @@
 	</div>
 	
 	<body>
+		
 		<div id="camera">
 			<div id="zoom">
 				<canvas id="canvas" width="100" height="100"></canvas>
 			</div>
 		</div>
-
+        
 		<!-- edit form WIP -->
-		<div class="login-popup">
 			{% if current_user.is_authenticated %}
+		    <div id="timer"></div>
+			<div class="login-popup">
 			<div class="form-popup" id="popupForm">
 			  <form action="" class="form-container" method="post">
 				<h2 id="pixel-edit">pixel</h2>
@@ -53,6 +55,8 @@
 				<h2 id="pixel-edit">pixel</h2>
 				<a href="../login" style="text-decoration: underline; color: aqua;">login to edit pixel</a>
 			</div>
+			
+
 			{% endif %}
 		</div>
 	</body>

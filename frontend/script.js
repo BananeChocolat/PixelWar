@@ -53,6 +53,40 @@ setInterval(getCanvas,2000);
 
 
 
+
+url=`/cooldown?user=${current_user_username}`;
+get_timer();
+
+function get_timer(){
+	fetch(url)
+    .then( response => response.json() )
+    .then( response => {
+        console.log( response );
+		temps=response['timer']
+    } );
+}
+
+
+const timerElement = document.getElementById("timer")
+
+
+
+setInterval(() => {
+  let minutes = parseInt(temps / 60, 10)
+  let secondes = parseInt(temps % 60, 10)
+
+  minutes = minutes < 10 ? "0" + minutes : minutes
+  secondes = secondes < 10 ? "0" + secondes : secondes
+//   console.log(timerElement)
+//   console.log(minutes, secondes)
+  temps = temps <= 0 ? 0 : temps - 1
+  timerElement.innerText = `${minutes}:${secondes}`
+  
+}, 1000)
+
+
+
+
 function openForm() {document.getElementById("popupForm").style.display = "block";}
 function closeForm() {document.getElementById("popupForm").style.display = "none";}
 
@@ -66,6 +100,7 @@ function editPixel(r, g, b, username) {
     var hash = MD5(cookie);
 	//console.log(hash);
 	var params =JSON.stringify( {"username":current_user_username,"position":[clicked_pixel.x, clicked_pixel.y], "color":[r,g,b],"cookie":hash,});
+	get_timer();
 	
 	
 	
