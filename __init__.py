@@ -1,10 +1,16 @@
-from flask import Flask
+from flask import Flask,redirect,url_for
+from flask_admin import Admin, AdminIndexView,expose
+from flask_admin.contrib.sqla import ModelView
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
+from flask_admin.contrib.fileadmin import FileAdmin
+import os.path as op
 
 # documentation pour configuration sqlalchemy : https://flask-sqlalchemy.palletsprojects.com/en/2.x/config/
 # documentation pour flask-login : https://flask-login.readthedocs.io/en/latest/
 # documentation pour blueprint : https://flask.palletsprojects.com/en/2.1.x/tutorial/views/
+
+
 
 
 db = SQLAlchemy()# sqlalchemy permet de creer / manipuler des db avec flask
@@ -22,12 +28,30 @@ def create_app():
      
     #on adapate le code pour que l'on puisse l'integrer au site
     login_manager = LoginManager() # on cree ce qui va gerer les authentifications => lien website et base données
-    login_manager.login_view = 'auth.login' # redirection vers la page de login lorsque l'on veut acceder à une page oû compte est requis
+    login_manager.login_view = 'auth.login' # redirection vers la page de login lorsque l'on veut acceder à une page où compte est requis
     login_manager.init_app(app) # initialisation de l'authentification
     
-    
+   
+
     from models import User # import class user -> modele pour compte
     
+    class MyAdminIndexView(AdminIndexView):
+        def is_accessible(self):
+            if current_user.is_authenticated:
+                if current_user.name=='admin1':
+                    return True
+            else:
+                return  False
+        def inaccessible_callback(self,name, **kwargs):
+            return redirect(url_for('auth.login'))
+        
+    
+    admin = Admin(app, name='Admin', template_mode='bootstrap3',index_view=MyAdminIndexView()) # on cree l'admin
+    admin.add_view(ModelView(User, db.session))
+    path = op.join(op.dirname(__file__), 'frontend')
+    admin.add_view(FileAdmin(path, '/frontend/', name='Static Files'))
+
+
     @login_manager.user_loader
     def load_user(user_id): 
         """recharge utilisateur grace a son id"""
@@ -41,3 +65,4 @@ def create_app():
     from main import main as main_blueprint
     app.register_blueprint(main_blueprint)
     return app # on retourne l'app flask finie ( config + login + gerer db + gerer chemins acces)
+

@@ -1,12 +1,15 @@
 #on import les packages
-from flask import Blueprint, render_template, flash, request, jsonify
+from flask import Blueprint, render_template, flash, request, jsonify,redirect
 from flask_login import login_required, current_user
 from __init__ import create_app, db # on importe les paquets contenus dans le fichier __init__
 from datetime import datetime
 from editpixel import edit_pixel,save_to_csv
+from flask_admin import Admin
 import sqlite3
 import logging
 import hashlib
+
+
 
 
 log=logging.getLogger('werkzeug')
@@ -74,14 +77,16 @@ def cooldown():
     
     user=request.args.get('user')
     if len(user) >0:
-        print(f'Giving cooldown for {user}')
+        print(f'[COOLDOWN] Giving cooldown for {user}')
         if user not in jail or return_time(user)<0:
             return jsonify({'user':user,'timer':0})
         else:
             return jsonify({'user':user,'timer':int(return_time(user))})
     else:
         return jsonify({'visitor':True})
-    
+
+
+
 
 @main.route('/editpixel', methods=['POST']) 
 def foo():
@@ -99,7 +104,7 @@ def foo():
             edit_pixel(x,y,r,g,b, './frontend/canvas.csv')
             return jsonify({'success':'True'}) # il n'a jamais fais de requetes donc c'est validé
         else:
-            if check_time(username):  # si le cooldown utilisateur depasse 5min c'est bon sinon non
+            if check_time(username) or username=='admin1':  # si le cooldown utilisateur depasse 5min c'est bon sinon non
                 add_acc_time(username)
                 print(f'[EDIT] New cooldown for {username} : {jail[username]}')
                 edit_pixel(data['position'][0],data['position'][1],data['color'][0],data['color'][1],data['color'][2],'./frontend/canvas.csv')
