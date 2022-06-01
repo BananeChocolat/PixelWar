@@ -39,11 +39,16 @@ def add_acc_time(account):
 def check_time(account):
     """Renvoie vrai si le compte n'a pas fait de requete dans les 5 dernieres minutes (delai)"""
     a=datetime.now()
-    difference=jail[account]-a
+    difference=a-jail[account]
     if difference.total_seconds()>300.0:
         return True
     else:
         return False
+
+def return_time(account):
+    """Retourne le temps restant en seconde"""
+    a=datetime.now()
+    return 300-(abs((jail[account]-a).total_seconds()))
 
 main = Blueprint('main', __name__)
 
@@ -63,6 +68,15 @@ if __name__ == '__main__':
     db.create_all(app=create_app()) # cree la db sqlite 
     app.run() 
 
+@main.route('/cooldown')
+def cooldown():
+    """Fonction get qui gere le cooldown"""
+    user=request.args.get('user')
+    if user not in jail or return_time(user)<0:
+        return jsonify({'user':user,'timer':0})
+    else:
+        return jsonify({'user':user,'timer':int(return_time(user))})
+    
 
 @main.route('/editpixel', methods=['POST']) 
 def foo():
@@ -86,6 +100,7 @@ def foo():
                 edit_pixel(data['position'][0],data['position'][1],data['color'][0],data['color'][1],data['color'][2],'./frontend/canvas.csv')
                 return jsonify({'success':'True'})
             else:
+                
                 print(f'[EDIT] Waiting cooldown for {username} : {jail[username]}')
                 return jsonify({'success':'False'})
     else:
