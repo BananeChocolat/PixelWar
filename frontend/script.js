@@ -67,6 +67,7 @@ function get_timer(){
 }
 
 
+
 const timerElement = document.getElementById("timer")
 
 
@@ -172,14 +173,31 @@ function hexToRgb() {
 	}
 	var clicked_pixel = {x:0, y:0};
 	zoom.onclick = function (e) {
+		
+		function get_pixel(){
+			fetch(`/last_user?pixel=${clicked_pixel.x},${clicked_pixel.y}`)
+			.then( response => response.json() )
+			.then( response => {
+				// console.log( response );
+				username=response['user']
+				console.log(username)
+	
+			} );
+		}
+        
+
+
+
 		e.preventDefault();
 		if (!drag) {	// if click
 			clicked_pixel = {x:Math.floor(100*(start.x/scale)/canvasWidth), y:Math.floor(100*(start.y/scale)/canvasHeight)}		
 			console.log(`clicked pixel @ ${clicked_pixel.x}, ${clicked_pixel.y}`);
 			//console.log(`Username ${ current_user_username }`);
-
+            
 			document.getElementById("pixel-edit").innerHTML = `pixel @ ${clicked_pixel.x}, ${clicked_pixel.y}`;
 			openForm()
+			get_pixel();
+            // console.log(`Username ${ username }`);
 			
 			// WIP : click pour focus sur un pixel 
 			
