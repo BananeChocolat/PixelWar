@@ -15,3 +15,4 @@ To do :
 - [X] Clean site entier
 - [ ] Ajouter le dernier utilisateur à avoir modifié le pixel
 - [ ] Ajouter un visuel pour le pixel selectionné 
+- [ ] Clean CSS
